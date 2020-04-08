@@ -2,7 +2,6 @@ import json
 
 import boto3
 import botocore
-#import pandas as pd
 import pandas as pd
 import wikipedia
 from io import StringIO
@@ -166,7 +165,7 @@ def lambda_handler(event, context):
 
     # Perform Sentiment Analysis
     df = apply_sentiment(df)
-    LOG.info(f"Sentiment from FANG companies: {df.to_dict()}")
+    LOG.info(f"Sentiment from YESDYNO companies: {df.to_dict()}")
 
     # Write result to S3
-    write_s3(df=df, bucket="fangsentiment", name=names)
+    write_s3(df=df, bucket="yesdynosentiment", name=names)
