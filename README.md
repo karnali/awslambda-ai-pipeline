@@ -5,3 +5,5 @@ Data Engineering Pipeline using:
 - Amazon DynamoDB  
 - Amazon CloudWatch  
 - Amazon Comprehend - Natural Language Processing (NLP)   
+![Serverless_AI_Pipeline](img/Serverless_AI_Pipeline.png)
+
