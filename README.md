@@ -1,2 +1,5 @@
 # awslambda-ai-pipeline
-AWS lambada,  SQS, Amazon Comprehend NLP, Data Engineering Pipeline
+Data Engineering Pipeline using:  
+AWS lambada,  
+SQS,   
+Amazon Comprehend natural language processing (NLP) service  
