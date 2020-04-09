@@ -1,9 +1,9 @@
 import json
-
 import boto3
 import botocore
 import pandas as pd
 import wikipedia
+import boto3
 from io import StringIO
 
 
@@ -23,26 +23,6 @@ REGION = "us-east-1"
 
 ### SQS Utils###
 def sqs_queue_resource(queue_name):
-    """Returns an SQS queue resource connection
-
-    Usage example:
-    In [2]: queue = sqs_queue_resource("dev-job-24910")
-    In [4]: queue.attributes
-    Out[4]:
-    {'ApproximateNumberOfMessages': '0',
-     'ApproximateNumberOfMessagesDelayed': '0',
-     'ApproximateNumberOfMessagesNotVisible': '0',
-     'CreatedTimestamp': '1476240132',
-     'DelaySeconds': '0',
-     'LastModifiedTimestamp': '1476240132',
-     'MaximumMessageSize': '262144',
-     'MessageRetentionPeriod': '345600',
-     'QueueArn': 'arn:aws:sqs:us-west-2:414930948375:dev-job-24910',
-     'ReceiveMessageWaitTimeSeconds': '0',
-     'VisibilityTimeout': '120'}
-
-    """
-
     sqs_resource = boto3.resource('sqs', region_name=REGION)
     log_sqs_resource_msg = "Creating SQS resource conn with qname: [%s] in region: [%s]" %\
      (queue_name, REGION)
@@ -165,8 +145,7 @@ def lambda_handler(event, context):
 
     # Perform Sentiment Analysis
     df = apply_sentiment(df)
-    LOG.info(f"Sentiment from YESDYNO companies: {df.to_dict()}")
+    LOG.info(f"Sentiment from FANG companies: {df.to_dict()}")
 
     # Write result to S3
     write_s3(df=df, bucket="yesdynosentiment", name=names)
-
