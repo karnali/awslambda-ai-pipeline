@@ -3,7 +3,6 @@ import boto3
 import botocore
 import pandas as pd
 import wikipedia
-import boto3
 from io import StringIO
 
 
@@ -20,6 +19,8 @@ LOG.addHandler(logHandler)
 
 #S3 BUCKET
 REGION = "us-east-1"
+bucket = "yesdynosentiment"
+
 
 ### SQS Utils###
 def sqs_queue_resource(queue_name):
@@ -69,6 +70,8 @@ def delete_sqs_msg(queue_name, receipt_handle):
     LOG.info(delete_log_msg_resp)
     return response
 
+"""--------- wikipedia_sentiment -----------------------------"""
+
 def names_to_wikipedia(names):
 
     wikipedia_snippit = []
@@ -98,8 +101,8 @@ def apply_sentiment(df, column="wikipedia_snippit"):
     df['Sentiment'] = df[column].apply(create_sentiment)
     return df
 
-### S3 ###
 
+# Write S3 Bucket
 def write_s3(df, bucket, name):
     """Write S3 Bucket"""
 
@@ -112,18 +115,17 @@ def write_s3(df, bucket, name):
     LOG.info(f"result of write to bucket: {bucket} with:\n {res}")
 
 
-
 def lambda_handler(event, context):
     """Entry Point for Lambda"""
 
     LOG.info(f"SURVEYJOB LAMBDA, event {event}, context {context}")
-    receipt_handle  = event['Records'][0]['receiptHandle'] #sqs message
+    receipt_handle = event['Records'][0]['receiptHandle'] #sqs message
     #'eventSourceARN': 'arn:aws:sqs:us-east-1:561744971673:producer'
     event_source_arn = event['Records'][0]['eventSourceARN']
 
     names = [] #Captured from Queue
 
-    # Process Queue
+    #Process Queue
     for record in event['Records']:
         body = json.loads(record['body'])
         company_name = body['name']
@@ -138,6 +140,7 @@ def lambda_handler(event, context):
         LOG.info(f"Attemping Deleting SQS receiptHandle {receipt_handle} with queue_name {qname}", extra=extra_logging)
         res = delete_sqs_msg(queue_name=qname, receipt_handle=receipt_handle)
         LOG.info(f"Deleted SQS receipt_handle {receipt_handle} with res {res}", extra=extra_logging)
+        
 
     # Make Pandas dataframe with wikipedia snippts
     LOG.info(f"Creating dataframe with values: {names}")
@@ -145,7 +148,7 @@ def lambda_handler(event, context):
 
     # Perform Sentiment Analysis
     df = apply_sentiment(df)
-    LOG.info(f"Sentiment from FANG companies: {df.to_dict()}")
+    LOG.info(f"Sentiment from yesdynosentiment companies: {df.to_dict()}")
 
-    # Write result to S3
+    # Write result to S3 
     write_s3(df=df, bucket="yesdynosentiment", name=names)
