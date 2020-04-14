@@ -63,6 +63,7 @@
 ##### While deploying Lambda functions from Cloud9. CloudFormation was invoked silently.  Here is the screenshot.  
 ![aws_cf_staks](img/aws_cf_staks.png)
 
+
 ##### List files from s3 buket where comprehend sentiment .csv files were written.
 ```
 $ aws s3 ls s3://yesdynosentiment
@@ -103,7 +104,7 @@ $ cat '['\''volkswagen'\'']_sentiment.csv'
 0,volkswagen,"Volkswagen (German: [ˈfɔlksˌvaːɡn̩] (listen); English: ), shortened to VW (German: [faʊ̯ ˈveː] (listen)), is a German automaker founded in 1937 by the German Labour Front, known for the iconic ""Beetle"" and headquartered in Wolfsburg.",NEUTRAL
 ```
 
-##### Detecting Sentiment Using the AWS Command Line Interface (AWS CLI).  
+##### Optional: Detecting Sentiment Using the AWS Command Line Interface (AWS CLI).  
 ```
 $ aws comprehend detect-sentiment --region us-east-1 --language-code "en" --text "First the Fake News Media said that it’s not fair for the President of the United States to be giving news conferences, but it is the only way I can reach the American People, as seen in the below poll."
 {
