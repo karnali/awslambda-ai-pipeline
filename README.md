@@ -8,13 +8,13 @@ Data Engineering Pipeline using:
 
 ![Serverless_AI_Pipeline](img/Serverless_AI_Pipeline.png)
 
-*
-Create awslambdaproducer Lambda function in Cloud9.  
-Copy /src/awslambdaproducer.py  
-Paste and Save in Cloud9  
-Install Python Packages, boto3 and activate venv.
-Deply the function  
-*
+
+* Create awslambdaproducer Lambda function in Cloud9.  
+* Copy /src/awslambdaproducer.py  
+* Paste and Save in Cloud9  
+* Install Python Packages, boto3 and activate venv.
+* Deply the function  
+
 ```
 ~/environment/awslambdaproducer/awslambdaproducer $source ../venv/bin/activate
 ~/environment/awslambdaproducer/awslambdaproducer $pip3 install boto3 --target ../
