@@ -1,5 +1,5 @@
 # AWS Lambda AI Data Engineering Pipeline
-Data Engineering Pipeline using:  
+##### Data Engineering Pipeline using:  
 - AWS Lambda  
 - Amazon Simple Queue Service (SQS)   
 - Amazon DynamoDB  
@@ -8,7 +8,7 @@ Data Engineering Pipeline using:
 
 ![Serverless_AI_Pipeline](img/Serverless_AI_Pipeline.png)
 
-
+##### awslambdaproducer
 * Create awslambdaproducer Lambda function in Cloud9.  
 * Copy /src/awslambdaproducer.py  
 * Paste and Save in Cloud9  
@@ -26,6 +26,7 @@ Data Engineering Pipeline using:
 ![producer](img/producer.png)
 
 
+##### awslambdaconsumer
 * Create awslambdaconsumer Lambda function in Cloud9.  
 * Copy /src/awslambdaconsumer.py  
 * Paste and Save in Cloud9  
@@ -39,7 +40,7 @@ Data Engineering Pipeline using:
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install boto3 --target ../
 ~/environment/awslambdaconsumer/awslambdaconsumer $  pip3 install python-json-logger --target ../
 ```
-Install wikipedia and pandas 3rd party packages. 
+##### Install wikipedia and pandas 3rd party packages. 
 ```
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install wikipedia --target ../  
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install pandas --target ../      
@@ -47,19 +48,22 @@ Install wikipedia and pandas 3rd party packages.
 
 ![consumer](img/consumer.png)
 
-Create DynoDB table.
+##### Create DynoDB table.
 ![DynoDB](img/dyno.png)
 
-Create SQS 
+
+##### Create SQS 
 ![SQS](img/sqs.png)
 
-Lambda functions.
+
+##### Lambda functions lists.
 ![lambda_func_lists](img/lambda_func.png)
 
-While deploying Labda functions from Cloud9. CloudFormation was invoked silently.  Here is the screenshot. 
+
+##### While deploying Lambda functions from Cloud9. CloudFormation was invoked silently.  Here is the screenshot.  
 ![aws_cf_staks](img/aws_cf_staks.png)
 
-List files from s3 buket where comprehend sentiment .csv files were written.
+##### List files from s3 buket where comprehend sentiment .csv files were written.
 ```
 $ aws s3 ls s3://yesdynosentiment
 2020-04-14 03:49:08        298 ['Cambridge Analytica Ltd ']_sentiment.csv
@@ -73,12 +77,12 @@ $ aws s3 ls s3://yesdynosentiment
 2020-04-14 03:49:03        304 ['volkswagen']_sentiment.csv
 ```
 
-Sync s3 bucket locally on Cloud9
+##### Sync s3 bucket locally on Cloud9
 ```
 $ aws s3 sync s3://yesdynosentiment ~/environment/yesdynosentiment
 ```
 
-List files locally in Cloud9
+##### List files locally in Cloud9 terminal.
 ```
 $ cd yesdynosentiment/
 $ ls -la
@@ -92,14 +96,14 @@ $ ls -la
 -rw-rw-r-- 1 ubuntu ubuntu   81 Apr 14 02:24 '['\''verizon'\'']_sentiment.csv'
 -rw-rw-r-- 1 ubuntu ubuntu  304 Apr 14 03:43 '['\''volkswagen'\'']_sentiment.csv'
 ```
-Read files and its content locally on Cloud9.
+##### Read files and its content locally on Cloud9 terminal.
 ```
 $ cat '['\''volkswagen'\'']_sentiment.csv'
 ,names,wikipedia_snippit,Sentiment
 0,volkswagen,"Volkswagen (German: [ˈfɔlksˌvaːɡn̩] (listen); English: ), shortened to VW (German: [faʊ̯ ˈveː] (listen)), is a German automaker founded in 1937 by the German Labour Front, known for the iconic ""Beetle"" and headquartered in Wolfsburg.",NEUTRAL
 ```
 
-Detecting Sentiment Using the AWS Command Line Interface (AWS CLI).  
+##### Detecting Sentiment Using the AWS Command Line Interface (AWS CLI).  
 ```
 $ aws comprehend detect-sentiment --region us-east-1 --language-code "en" --text "First the Fake News Media said that it’s not fair for the President of the United States to be giving news conferences, but it is the only way I can reach the American People, as seen in the below poll."
 {
