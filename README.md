@@ -8,15 +8,15 @@ Data Engineering Pipeline using:
 
 ![Serverless_AI_Pipeline](img/Serverless_AI_Pipeline.png)
 
-
+```
 ~/environment/awslambdaproducer/awslambdaproducer $source ../venv/bin/activate
 ~/environment/awslambdaproducer/awslambdaproducer $pip3 install boto3 --target ../
 ~/environment/awslambdaproducer/awslambdaproducer $ pip3 install python-json-logger --target ../
-
+```
 
 ![producer](img/producer.png)
 
-
+```
 ~/environment/awslambdaconsumer/awslambdaconsumer $ source ../venv/bin/activate
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install boto3 --target ../
 ~/environment/awslambdaconsumer/awslambdaconsumer $  pip3 install python-json-logger --target ../
@@ -24,6 +24,8 @@ Data Engineering Pipeline using:
 
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install wikipedia --target ../  
 ~/environment/awslambdaconsumer/awslambdaconsumer $ pip3 install pandas --target ../      
+```
+
 ![consumer](img/consumer.png)
 
 ![DynoDB](img/dyno.png)
@@ -33,6 +35,7 @@ Data Engineering Pipeline using:
 ![lambda_func_lists](img/lambda_func.png)
 ![aws_cf_staks](img/aws_cf_staks.png)
 
+```
 $ aws s3 ls s3://yesdynosentiment
 2020-04-14 03:49:08        298 ['Cambridge Analytica Ltd ']_sentiment.csv
 2020-04-14 03:49:02        274 ['debian']_sentiment.csv
@@ -78,3 +81,4 @@ $ aws comprehend detect-sentiment --region us-east-1 --language-code "en" --text
         "Mixed": 5.415055511548417e-06
     }
 }
+```
